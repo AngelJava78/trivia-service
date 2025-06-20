@@ -10,9 +10,4 @@ import java.util.Optional;
 @Repository
 public interface QuestionRepository extends MongoRepository<Question, String> {
 
-
-    List<Question> findByTopicIgnoreCase(String topic);
-
-    Optional<Question> findByTopicIgnoreCaseAndQuestionId(String topic, int questionId);
-
 }
