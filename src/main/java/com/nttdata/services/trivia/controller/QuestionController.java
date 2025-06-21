@@ -16,33 +16,34 @@ import java.util.List;
 @RequiredArgsConstructor
 public class QuestionController {
 
-    private final QuestionService questionService;
+  private final QuestionService questionService;
 
-    @GetMapping("list")
-    public ResponseEntity<List<QuestionDto>> getUserList() {
-        return questionService.getAllQuestions();
-    }
+  @GetMapping("list")
+  public ResponseEntity<List<QuestionDto>> getUserList() {
+    return questionService.getAllQuestions();
+  }
 
-    @GetMapping("{category}")
-    public ResponseEntity<List<QuestionDto>> getQuestionsByCategory(@PathVariable String category) {
-        return questionService.getQuestionsByCategory(category);
-    }
+  @GetMapping("{category}")
+  public ResponseEntity<List<QuestionDto>> getQuestionsByCategory(@PathVariable String category) {
+    return questionService.getQuestionsByCategory(category);
+  }
 
-    @GetMapping("{category}/{id}")
-    public ResponseEntity<QuestionDto> getQuestionByCategoryAndId(@PathVariable String category, @PathVariable Long id) {
-        return questionService.getQuestionByCategoryAndId(category, id);
-    }
+  @GetMapping("{category}/{id}")
+  public ResponseEntity<QuestionDto> getQuestionByCategoryAndId(@PathVariable String category,
+      @PathVariable Long id) {
+    return questionService.getQuestionByCategoryAndId(category, id);
+  }
 
-    @PostMapping("save")
-    public ResponseEntity<QuestionDto> saveQuestion(@RequestBody QuestionDto questionDto) {
-        return questionService.saveQuestion(questionDto);
-    }
+  @PostMapping
+  public ResponseEntity<QuestionDto> saveQuestion(@RequestBody QuestionDto questionDto) {
+    return questionService.saveQuestion(questionDto);
+  }
 
 
-    @GetMapping("count")
-    public ResponseEntity<List<CategoryCountDto>> getCategories() {
-        return questionService.getCategories();
-    }
+  @GetMapping("count")
+  public ResponseEntity<List<CategoryCountDto>> getCategories() {
+    return questionService.getCategories();
+  }
 
 
 }

@@ -11,17 +11,18 @@ import java.util.List;
 @Builder
 @Document(collection = "questions")
 public class Question {
-    @Id
-    private String id;
 
-    private int questionId;
+  @Id
+  private String id;
 
-    private String topic;
+  private int questionId;
 
-    private String question;
+  private String topic;
 
-    private List<String> options;
+  private String question;
 
-    private String answer;
+  private List<String> options;
+
+  private String answer;
 
 }

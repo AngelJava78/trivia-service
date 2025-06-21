@@ -10,11 +10,11 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface QuestionMapper {
 
-    QuestionDto toDto(Question question);
+  QuestionDto toDto(Question question);
 
-    Question toModel(QuestionDto questionDto);
+  Question toModel(QuestionDto questionDto);
 
-    List<QuestionDto> toDtoList(List<Question> questionList);
+  List<QuestionDto> toDtoList(List<Question> questionList);
 
-    List<Question> toModelList(List<QuestionDto> questionDtoList);
+  List<Question> toModelList(List<QuestionDto> questionDtoList);
 }

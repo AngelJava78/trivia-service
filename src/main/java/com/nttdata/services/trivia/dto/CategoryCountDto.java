@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoryCountDto {
-    private String topic;
 
-    private long total;
+  private String topic;
+
+  private long total;
 
 }
