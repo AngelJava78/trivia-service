@@ -5,17 +5,20 @@ import com.nttdata.services.trivia.dto.QuestionDto;
 import com.nttdata.services.trivia.mappers.QuestionMapper;
 import com.nttdata.services.trivia.model.Question;
 import com.nttdata.services.trivia.repository.QuestionRepository;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+/**
+ * Question service.
+ *
+ * @author <a href="ajavierv@emeal.nttdata.com">ajavierv@emeal.nttdata.com</a>
+ */
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -25,24 +28,42 @@ public class QuestionService {
 
   private final QuestionMapper questionMapper;
 
+  /**
+   * Get all questions.
+   *
+   * @return ResponseEntity with list of questions
+   */
   public ResponseEntity<List<QuestionDto>> getAllQuestions() {
     List<QuestionDto> questionList = questionRepository.findAll()
         .stream()
         .map(questionMapper::toDto)
-        .collect(Collectors.toList());
+        .toList();
     return ResponseEntity.ok(questionList);
   }
 
+  /**
+   * Get questions by category.
+   *
+   * @param category category name
+   * @return ResponseEntity with list of questions
+   */
   public ResponseEntity<List<QuestionDto>> getQuestionsByCategory(String category) {
     List<QuestionDto> questionsByCategory = questionRepository.findAll()
         .stream()
         .filter(q -> q.getTopic().equalsIgnoreCase(category))
         .map(questionMapper::toDto)
-        .collect(Collectors.toList());
+        .toList();
 
     return ResponseEntity.ok(questionsByCategory);
   }
 
+  /**
+   * Get all questions.
+   *
+   * @param category category name
+   * @param id question id
+   * @return ResponseEntity with list of questions
+   */
   public ResponseEntity<QuestionDto> getQuestionByCategoryAndId(String category, Long id) {
     Optional<Question> questionOptional = questionRepository.findAll()
         .stream()
@@ -54,13 +75,23 @@ public class QuestionService {
         .orElseGet(() -> ResponseEntity.notFound().build());
   }
 
-
+  /**
+   * Save question.
+   *
+   * @param questionDto question input data
+   * @return ResponseEntity with saved question
+   */
   public ResponseEntity<QuestionDto> saveQuestion(QuestionDto questionDto) {
     Question question = questionMapper.toModel(questionDto);
     Question savedQuestion = questionRepository.save(question);
     return ResponseEntity.ok(questionMapper.toDto(savedQuestion));
   }
 
+  /**
+   * Get question summary.
+   *
+   * @return ResponseEntity with question summary grouped by category
+   */
   public ResponseEntity<List<CategoryCountDto>> getCategories() {
     List<Question> allQuestions = questionRepository.findAll();
 
@@ -72,7 +103,7 @@ public class QuestionService {
 
     List<CategoryCountDto> result = grouped.entrySet().stream()
         .map(entry -> new CategoryCountDto(entry.getKey(), entry.getValue()))
-        .collect(Collectors.toList());
+        .toList();
 
     return ResponseEntity.ok(result);
   }

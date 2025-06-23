@@ -4,9 +4,11 @@ import com.nttdata.services.trivia.model.Question;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
-
+/**
+ * Question mongo repository.
+ *
+ * @author <a href="ajavierv@emeal.nttdata.com">ajavierv@emeal.nttdata.com</a>
+ */
 @Repository
 public interface QuestionRepository extends MongoRepository<Question, String> {
 

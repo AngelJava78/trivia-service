@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+  <Match>
+    <Or>
+      <!-- Ignore Documents packages -->
+      <Package name="com.nttdata.services.trivia.dto.QuestionDto$QuestionDtoBuilder"/>
+      <Bug pattern="EI_EXPOSE_REP2"/>
+    </Or>
+  </Match>
+  <Match>
+    <Or>
+      <!-- Ignore Documents packages -->
+      <Package name="com.nttdata.services.trivia.model.Question$QuestionBuilder"/>
+      <Bug pattern="EI_EXPOSE_REP2"/>
+    </Or>
+  </Match>
+
+
+</FindBugsFilter>
