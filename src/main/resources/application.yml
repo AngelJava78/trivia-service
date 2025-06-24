@@ -3,4 +3,6 @@ spring:
     name: trivia-service
   data:
     mongodb:
-      uri: mongodb://localhost:27017/triviadb
+      uri: mongodb+srv://angeljava:TAzniVaa8ullq52D@triviadb.i16toie.mongodb.net/
+      database: triviadb
+      # uri: mongodb://localhost:27017/triviadb
